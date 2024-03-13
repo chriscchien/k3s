@@ -1,5 +1,5 @@
 FROM ALPINE_VERSION as base
-RUN apk add -U open-iscsi
+RUN apk add -U open-iscsi jq curl bash
 # /etc/iscsi
 # /lib/
 # /usr/lib
@@ -10,3 +10,6 @@ COPY --from=base /etc/iscsi /etc/iscsi
 COPY --from=base /lib /lib
 COPY --from=base /usr/lib /usr/lib
 COPY --from=base /usr/sbin/iscsi* /sbin/iscsi* /usr/sbin/
+COPY --from=base /usr/bin/curl /usr/bin/curl
+COPY --from=base /usr/bin/jq /usr/bin/jq
+COPY --from=base /bin/bash /bin/bash
